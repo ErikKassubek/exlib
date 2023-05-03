@@ -19,18 +19,6 @@ func MutexInReference(mu *sync.Mutex) {
 	mu.Unlock()
 }
 
-func MutexInOutValue(mu sync.Mutex) sync.Mutex {
-	fmt.Println("MutexInOutValue")
-	return mu
-
-}
-
-func MutexInOutReference(mu *sync.Mutex) *sync.Mutex {
-	fmt.Println("MutexInOutReference")
-	return mu
-
-}
-
 // ============= RW-Mutexe =============
 func RWMutexInValue(mu sync.RWMutex) {
 	mu.Lock()
@@ -44,34 +32,20 @@ func RWMutexInReference(mu *sync.RWMutex) {
 	mu.Unlock()
 }
 
-func RWMutexInOutValue(mu sync.RWMutex) sync.RWMutex {
-	fmt.Println("RWMutexInOutValue")
-	return mu
-
-}
-
-func RWMutexInOutReference(mu *sync.RWMutex) *sync.RWMutex {
-	fmt.Println("RWMutexInOutReference")
-	return mu
-
-}
-
 // ============= channel =============
 
-func ChannelInValue(ch chan int) {
-	fmt.Println("ChannelInValue")
+func ChannelInValueSend(ch chan int) {
+	ch <- 1
 }
 
-func ChannelInReference(ch *chan int) {
-	fmt.Println("ChannelInReference")
+func ChannelInReferenceSend(ch *chan int) {
+	*ch <- 1
 }
 
-func ChannelInOutValue(ch chan int) chan int {
-	fmt.Println("ChannelInOutValue")
-	return ch
+func ChannelInValueReceive(ch chan int) {
+	<-ch
 }
 
-func ChannelInOutReference(ch *chan int) *chan int {
-	fmt.Println("ChannelInOutReference")
-	return ch
+func ChannelInReferenceReceive(ch *chan int) {
+	<-*ch
 }
