@@ -35,7 +35,9 @@ func RWMutexInReference(mu *sync.RWMutex) {
 // ============= channel =============
 
 func ChannelInValueSend(ch chan int) {
+	fmt.Println("Send 1")
 	ch <- 1
+	fmt.Println("Send 2")
 }
 
 func ChannelInReferenceSend(ch *chan int) {
